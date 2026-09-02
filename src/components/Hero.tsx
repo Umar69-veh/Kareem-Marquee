@@ -4,45 +4,33 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar, ArrowRight, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SLIDES = [
-  {
-    id: 1,
-    image: "/images/hero-1.jpg",
-    title: "MOMENT BECOMES A MEMORY",
-    subtitle: "WHERE EVERY",
-    description: "From dream weddings to elegant celebrations, Kareem Palace Marquee turns your special moments into unforgettable memories."
-  },
-  {
-    id: 2,
-    image: "/images/hero-2.png",
-    title: "LUXURY REDEFINED",
-    subtitle: "EXPERIENCE",
-    description: "Our grand halls and impeccable service provide the perfect backdrop for your most prestigious events."
-  }
+const BACKGROUND_IMAGES = [
+  "/images/hero-1.png",
+  "/images/hero-2.png"
 ];
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    setCurrentSlide((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+    setCurrentSlide((prev) => (prev - 1 + BACKGROUND_IMAGES.length) % BACKGROUND_IMAGES.length);
   };
 
-  // Automatically transition every 3 seconds as requested
+  // Automatically transition only the background image every 3 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+      setCurrentSlide((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
     }, 3000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="relative h-screen min-h-[600px] w-full overflow-hidden bg-brand-dark">
-      {/* Background Slider */}
+      {/* Background Slider - Only Image changes every 3s */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -54,38 +42,29 @@ export default function Hero() {
         >
           <div 
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${SLIDES[currentSlide].image}')` }}
+            style={{ backgroundImage: `url('${BACKGROUND_IMAGES[currentSlide]}')` }}
           />
-          {/* Gradients to match the dark/gold feel */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
+          {/* Gradients to match the dark/gold luxury feel */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Main Content */}
+      {/* Main Content - Completely static so only image changes */}
       <div className="relative z-20 h-full flex flex-col justify-center px-4 md:px-16 lg:px-24 pt-20">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            key={`content-${currentSlide}`}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h3 className="text-white text-lg md:text-xl tracking-[0.2em] font-medium mb-2 uppercase">
-              {SLIDES[currentSlide].subtitle}
+              WHERE EVERY
             </h3>
             
-            {/* The main title needs to wrap nicely */}
             <h1 className="text-5xl md:text-7xl font-serif text-white leading-[1.1] mb-6">
-              {SLIDES[currentSlide].title.split(' ').map((word, i) => {
-                // Highlight specific words in Gold, like the screenshot highlights "A MEMORY" but here it's part of the text
-                const isHighlight = word === "MEMORY" || word === "REDEFINED" || word === "DAY";
-                return (
-                  <span key={i} className={isHighlight ? "text-brand-gold block mt-2" : ""}>
-                    {word}{" "}
-                  </span>
-                );
-              })}
+              MOMENT BECOMES <br />
+              <span className="text-brand-gold">A MEMORY</span>
             </h1>
 
             {/* Decorative divider */}
@@ -96,7 +75,7 @@ export default function Hero() {
             </div>
 
             <p className="text-gray-300 text-sm md:text-base max-w-md mb-10 leading-relaxed">
-              {SLIDES[currentSlide].description}
+              From dream weddings to elegant celebrations, Kareem Palace Marquee turns your special moments into unforgettable memories.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -142,14 +121,14 @@ export default function Hero() {
 
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-        {SLIDES.map((_, idx) => (
+        {BACKGROUND_IMAGES.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
             className={`h-1 transition-all duration-300 rounded-full ${
               currentSlide === idx ? "w-8 bg-brand-gold" : "w-4 bg-white/50 hover:bg-white/80"
             }`}
-          aria-label={`Go to slide ${idx + 1}`}
+            aria-label={`Go to slide ${idx + 1}`}
           />
         ))}
       </div>
