@@ -30,7 +30,11 @@ const LINKS = [
   { label: "CONTACT", href: "#contact" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenBooking?: () => void;
+}
+
+export default function Navbar({ onOpenBooking }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -109,7 +113,10 @@ export default function Navbar() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <button className="hidden md:block bg-brand-gold hover:bg-brand-gold-hover text-black px-6 py-2.5 text-sm font-semibold tracking-wide rounded-sm transition-colors">
+          <button 
+            onClick={onOpenBooking}
+            className="hidden md:block bg-brand-gold hover:bg-brand-gold-hover text-black px-6 py-2.5 text-sm font-semibold tracking-wide rounded-sm transition-colors shadow-md hover:scale-105"
+          >
             BOOK AN EVENT
           </button>
           
@@ -160,7 +167,13 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <button className="mt-8 bg-brand-gold text-black px-8 py-3 text-sm font-semibold tracking-wide rounded-sm w-full max-w-xs">
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenBooking) onOpenBooking();
+                }}
+                className="mt-8 bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3 text-sm font-semibold tracking-wide rounded-sm w-full max-w-xs shadow-lg"
+              >
                 BOOK AN EVENT
               </button>
             </nav>

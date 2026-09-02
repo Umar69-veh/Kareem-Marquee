@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="30" fill="#1C1C1C" stroke="#C09B5A" stroke-width="2.5"/>
+  <!-- Crown on top of K -->
+  <path d="M22 22 L26 26 L32 20 L38 26 L42 22 L40 29 L24 29 Z" fill="#C09B5A"/>
+  <!-- Royal Letter K -->
+  <text x="32" y="47" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="bold" fill="#C09B5A" text-anchor="middle">K</text>
+</svg>

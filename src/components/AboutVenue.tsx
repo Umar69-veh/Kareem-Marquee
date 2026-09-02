@@ -45,7 +45,11 @@ const FEATURES = [
   { icon: Icons.Service, label: "Professional\nService" },
 ];
 
-export default function AboutVenue() {
+interface AboutVenueProps {
+  onOpenBooking?: () => void;
+}
+
+export default function AboutVenue({ onOpenBooking }: AboutVenueProps) {
   return (
     <section className="py-24 bg-brand-light" id="about">
       <div className="container mx-auto px-4 md:px-8">
@@ -95,7 +99,10 @@ export default function AboutVenue() {
               })}
             </div>
 
-            <button className="bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors uppercase">
+            <button 
+              onClick={onOpenBooking}
+              className="bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors uppercase"
+            >
               Discover More →
             </button>
           </motion.div>

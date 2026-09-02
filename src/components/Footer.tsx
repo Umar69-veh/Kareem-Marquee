@@ -29,7 +29,11 @@ const Tiktok = ({ size = 16 }) => (
   </svg>
 );
 
-export default function Footer() {
+interface FooterProps {
+  onOpenBooking?: () => void;
+}
+
+export default function Footer({ onOpenBooking }: FooterProps) {
   return (
     <footer className="bg-[#0A0A0A] text-gray-400 pt-20 pb-8 relative border-t border-white/5">
       <div className="container mx-auto px-4 md:px-8">
@@ -118,7 +122,10 @@ export default function Footer() {
             <p className="text-sm leading-relaxed mb-6">
               Fill out the form and our team will get back to you.
             </p>
-            <button className="bg-brand-gold hover:bg-brand-gold-hover text-black px-6 py-2.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2">
+            <button 
+              onClick={onOpenBooking}
+              className="bg-brand-gold hover:bg-brand-gold-hover text-black px-6 py-2.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2"
+            >
               BOOK NOW <FileText size={16} />
             </button>
           </div>

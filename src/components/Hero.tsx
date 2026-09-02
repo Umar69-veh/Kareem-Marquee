@@ -9,7 +9,11 @@ const BACKGROUND_IMAGES = [
   "/images/hero-2.png"
 ];
 
-export default function Hero() {
+interface HeroProps {
+  onOpenBooking?: () => void;
+}
+
+export default function Hero({ onOpenBooking }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
@@ -79,10 +83,16 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2">
+              <button 
+                onClick={onOpenBooking}
+                className="bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2"
+              >
                 EXPLORE VENUE <ArrowRight size={16} />
               </button>
-              <button className="border border-white hover:border-brand-gold text-white hover:text-brand-gold px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2">
+              <button 
+                onClick={onOpenBooking}
+                className="border border-white hover:border-brand-gold text-white hover:text-brand-gold px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2"
+              >
                 BOOK A VISIT <Calendar size={16} />
               </button>
             </div>

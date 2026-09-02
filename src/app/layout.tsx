@@ -15,6 +15,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Kareem Palace Marquee | Luxury Events",
   description: "From dream weddings to elegant celebrations, Kareem Palace Marquee turns your special moments into unforgettable memories.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

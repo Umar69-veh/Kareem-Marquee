@@ -4,7 +4,11 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function Packages() {
+interface PackagesProps {
+  onOpenBooking?: () => void;
+}
+
+export default function Packages({ onOpenBooking }: PackagesProps) {
   return (
     <section className="bg-[#1C1C1C] relative overflow-hidden" id="packages">
       <div className="flex flex-col lg:flex-row">
@@ -26,7 +30,10 @@ export default function Packages() {
             <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-10 max-w-sm">
               We offer customized packages to make your event seamless and memorable.
             </p>
-            <button className="bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2 w-fit">
+            <button 
+              onClick={onOpenBooking}
+              className="bg-brand-gold hover:bg-brand-gold-hover text-black px-8 py-3.5 text-sm font-semibold tracking-wide rounded-sm transition-colors flex items-center justify-center gap-2 w-fit"
+            >
               VIEW PACKAGES <ArrowRight size={16} />
             </button>
           </motion.div>
