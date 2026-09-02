@@ -5,8 +5,8 @@ import { ChevronLeft, ChevronRight, Calendar, ArrowRight, Play } from "lucide-re
 import { motion, AnimatePresence } from "framer-motion";
 
 const BACKGROUND_IMAGES = [
-  "/images/hero-1.png",
-  "/images/hero-2.png"
+  "/images/hero-bg-1.jpg",
+  "/images/hero-bg-2.jpg"
 ];
 
 interface HeroProps {
